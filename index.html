@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0c1220" />
+    <meta name="description" content="Codex.MX: páginas web, automatizaciones, aplicaciones web y redes sociales en Guadalajara, Jalisco. Planifica tu proyecto y comparte tus necesidades por WhatsApp. Atención a distancia." />
+    <title>Codex.MX · Tu próximo proyecto digital</title>
+    <script>
+      (() => {
+        let saved;
+        try { saved = localStorage.getItem('codex-theme'); } catch {}
+        const theme = saved === 'light' || saved === 'dark' ? saved : window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = theme;
+        document.documentElement.style.colorScheme = theme;
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
