@@ -1,6 +1,24 @@
 # Codex.MX
 
-Web estática con React + Vite. Incluye cuatro servicios, planificador guiado, resumen basado en reglas locales, enlaces de WhatsApp, copia con alternativa manual, menú móvil y temas claro/oscuro.
+Sitio comercial de Codex.MX, construido con React + Vite. Publicado en **https://codexmx.netlify.app/** y con el código en **https://github.com/nahum29/Codex.MX**.
+
+Incluye cuatro servicios con precios de referencia, un planificador guiado que genera un resumen local, trabajos publicados con captura y enlace vivo, proceso de trabajo, preguntas frecuentes, contacto por WhatsApp y temas claro/oscuro.
+
+## Secciones
+
+| Sección | Qué aporta |
+| --- | --- |
+| Portada | Titular, llamada a planificar y acceso directo a los cuatro servicios |
+| Cómo trabajamos | Tres razones verificables: trato directo, atención a distancia y explicaciones en español |
+| Servicios | Páginas web, automatizaciones, aplicaciones web y redes sociales |
+| Planificador | Preguntas guiadas por servicio y resumen con reglas locales |
+| Trabajos | Cuatro proyectos publicados, con filtro por tipo, captura y enlace al sitio en vivo |
+| Proceso | Tres pasos, sin prometer plazos que dependan del alcance |
+| Inversión | Rangos en pesos mexicanos y nota sobre el presupuesto final |
+| Preguntas frecuentes | Seis dudas habituales, también publicadas como `FAQPage` en los datos estructurados |
+| Contacto | WhatsApp, correo, teléfono, Facebook y ubicación |
+
+En móvil aparece una barra fija de WhatsApp que no tapa el contenido del pie.
 
 ## Ejecutar en tu computadora
 
@@ -19,18 +37,32 @@ El archivo original se conserva en `Logo.jpg`. La web utiliza una copia idéntic
 
 El logo aparece en el encabezado, la portada y el pie. Se conservan sus proporciones y colores. Un recorte circular mediante CSS (`border-radius: 50%`) oculta las esquinas blancas, sin modificar el archivo original ni aplicar filtros. Para actualizarlo, reemplaza la copia en `public/` o configura una nueva ruta en `src/data.js`.
 
+Los iconos `favicon.png`, `apple-touch-icon.png` e `icon-512.png` se generaron recortando ese mismo logo a círculo, con las esquinas transparentes y, en el caso de iOS, sobre el fondo `#0c1220` para que no aparezcan esquinas negras.
+
+## Posicionamiento en buscadores y al compartir
+
+`index.html` incluye etiquetas `og:*` y `twitter:*`, enlace canónico, `robots.txt`, `sitemap.xml`, `site.webmanifest` y tres bloques de datos estructurados: `ProfessionalService` (con teléfono, correo, ubicación y catálogo de servicios), `WebSite` y `FAQPage`.
+
+La imagen `public/og-image.png` (1200 × 630) se usa al compartir el enlace en WhatsApp, Facebook o LinkedIn.
+
+El FAQ publicado en pantalla y el bloque `FAQPage` deben decir exactamente lo mismo. La prueba `tests/seo.test.js` los compara y falla si alguien cambia uno sin cambiar el otro. También comprueba que el teléfono, el correo, los precios mínimos del catálogo, el dominio de las etiquetas de compartir y que cada captura y cada enlace de los trabajos existan.
+
 ## Dónde editar
 
 | Archivo | Contenido |
 | --- | --- |
-| `src/data.js` | Contacto, enlaces reales, logo, portada, servicios, preguntas y preferencias |
+| `src/data.js` | Contacto, enlaces reales, logo, servicios, preguntas, trabajos, proceso, inversión y FAQ |
 | `src/planner.js` | Reglas del resumen, validación, opciones excluyentes y mensaje de WhatsApp |
 | `src/Planner.jsx` | Interacción del formulario, progreso, copia y resultado |
 | `src/App.jsx` | Estructura de la web, navegación, textos de secciones y selector de tema |
 | `src/styles.css` | Variables de color, tipografía, ambos temas y diseño responsive |
-| `index.html` | Título, descripción SEO y elección inicial del tema antes de cargar React |
+| `index.html` | Título, datos estructurados, etiquetas para compartir y elección inicial del tema antes de cargar React |
 
-Las respuestas se mantienen en el estado de React y se eliminan al recargar o cerrar la página. Cambiar de servicio borra sus respuestas específicas, conservando las preferencias comunes. Solo la elección de tema se guarda en `localStorage`. No hay backend, analítica, formularios externos ni llamadas a IA.
+### Actualizar un trabajo
+
+Los trabajos viven en `featuredProjects` (`src/data.js`). Cada entrada necesita `url` (enlace absoluto al sitio publicado) e `image` (ruta en `public/`). La prueba de SEO comprueba que ambos existan, así que un enlace roto o una captura que falte detiene la compilación de las pruebas antes de publicar.
+
+Las respuestas del planificador se mantienen en el estado de React y se eliminan al recargar o cerrar la página. Cambiar de servicio borra sus respuestas específicas, conservando las preferencias comunes. Solo la elección de tema se guarda en `localStorage`. No hay backend, analítica, formularios externos ni llamadas a IA.
 
 ### Preguntas
 
@@ -49,7 +81,7 @@ npm run test:e2e
 npm run build
 ```
 
-Las pruebas comprueban reglas, preguntas condicionales, los cuatro recorridos, validación, conservación al retroceder, cambio de servicio, caracteres especiales, copia y alternativa, menú, teclado, tema del sistema y persistencia. También generan capturas en `test-results/` a 360, 390, 768 y 1440 px, en ambos temas, y comprueban desbordamientos.
+`npm test` ejecuta las reglas del planificador y las comprobaciones de SEO. `npm run test:e2e` comprueba los cuatro recorridos, la accesibilidad con axe-core en ambos temas, el menú, el teclado, la persistencia del tema y la ausencia de desbordes a 360, 390, 768 y 1440 px; además genera capturas en `test-results/`.
 
 Para revisar la compilación:
 
@@ -57,12 +89,17 @@ Para revisar la compilación:
 npm run preview
 ```
 
-## Publicar en Netlify cuando lo decidas
+## Publicar
 
-La web **no se ha desplegado**. No necesita un dominio propio, claves API, base de datos ni servicios adicionales.
+El sitio ya está publicado en **https://codexmx.netlify.app/**. La configuración de Netlify está en `netlify.toml`: compilación `npm run build` y publicación desde `dist`.
+
+**Desde el repositorio (recomendado):** conéctalo en la interfaz de Netlify a `github.com/nahum29/Codex.MX`, rama `main`. Cada `git push` publica automáticamente.
 
 **Publicación manual:** ejecuta `npm run build` y carga la carpeta `dist` en la opción de publicación manual de Netlify. Sube `dist`, no la carpeta del código ni `node_modules`.
 
-**Desde un repositorio:** sube el código a tu repositorio y conéctalo a Netlify. Usa comando de compilación `npm run build` y directorio de publicación `dist`; `netlify.toml` ya incluye esta configuración. No requiere variables de entorno.
+No necesita claves API, base de datos ni servicios adicionales. Netlify puede asignar una dirección `*.netlify.app`; no se asume la propiedad de `codex.mx`.
 
-Netlify puede asignar una dirección `*.netlify.app`; no se asume la propiedad de `codex.mx`. Para actualizar una publicación manual, vuelve a compilar y carga el nuevo `dist`.
+## Pasos que quedan en tu parte
+
+- Conectar el repositorio a Netlify (o volver a subir `dist`) para publicar los cambios.
+- En Google Search Console, añadir el sitio y enviar `https://codexmx.netlify.app/sitemap.xml`.

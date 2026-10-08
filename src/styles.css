@@ -210,6 +210,90 @@ h2 { font-size: clamp(29px, 3.3vw, 44px); line-height: 1.15; }
 .footer .brand { font-size: 22px; }
 .footer p, .footer > a:last-child { font-size: 11px; color: var(--muted); }
 .footer > a:last-child { padding-block: 13px; }
+/* Navegación: sección activa y barra encogida al desplazar. */
+.nav a[aria-current='page'] { color: var(--accent); }
+.header-inner { transition: height .2s ease; }
+.header .brand img { transition: width .2s ease, height .2s ease; }
+.header.shrunk .header-inner { height: 62px; }
+.header.shrunk .brand img { width: 34px; height: 34px; }
+.header.shrunk { box-shadow: 0 10px 30px #18223b0f; }
+.nav-whatsapp { display: inline-flex; align-items: center; min-height: 42px; padding-inline: 16px; border: 1px solid var(--border); border-radius: 8px; color: var(--accent); font-size: 13px; font-weight: 650; }
+.nav-whatsapp:hover { background: var(--selected); border-color: var(--accent); }
+
+/* Tira de razones para trabajar contigo, justo después del hero. */
+.advantages-section { border-block: 1px solid var(--border); background: var(--surface); }
+.advantages-grid { display: grid; gap: 24px; padding-block: 28px; }
+.advantage { display: flex; align-items: flex-start; gap: 14px; }
+.advantage-mark { display: grid; place-items: center; width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: var(--selected); color: var(--accent); }
+.advantage h3 { font-size: 15px; letter-spacing: -.02em; }
+.advantage p { margin-top: 6px; font-size: 13px; color: var(--muted); }
+
+/* Trabajos publicados: captura, enlace vivo y filtro por tipo. */
+.works-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 28px; }
+.filter-chip { min-height: 42px; padding: 8px 18px; border: 1px solid var(--border); border-radius: 999px; background: var(--surface); color: var(--muted); font-size: 13px; font-weight: 600; }
+.filter-chip:hover { border-color: var(--accent); color: var(--accent); }
+.filter-chip.active { background: var(--selected); border-color: var(--accent); color: var(--accent); }
+.works-grid { display: grid; gap: 24px; }
+.work-card { display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.work-image { display: block; width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: top center; background: var(--soft); }
+.work-body { display: flex; flex-direction: column; gap: 10px; padding: 24px; }
+.work-category { font-size: 10px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.work-body h3 { font-size: 21px; }
+.work-body > p { font-size: 14px; color: var(--muted); }
+.work-body > p.work-result { color: var(--text); font-size: 13px; }
+.work-tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 2px 0 0; padding: 0; list-style: none; }
+.work-tags li { padding: 5px 10px; border-radius: 999px; background: var(--soft); color: var(--muted); font-size: 11px; }
+.works-note { margin-top: 28px; font-size: 13px; color: var(--muted); }
+.inline-link { display: inline-flex; align-items: center; gap: 6px; color: var(--accent); font-weight: 600; }
+.inline-link:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Proceso: tres pasos numerados. */
+.process-list { display: grid; gap: 18px; margin: 0; padding: 0; list-style: none; }
+.process-step { padding: 26px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.process-number { display: block; margin-bottom: 14px; font-size: 13px; font-weight: 700; letter-spacing: .12em; color: var(--accent); }
+.process-step h3 { font-size: 19px; margin-bottom: 8px; }
+.process-step p { font-size: 14px; color: var(--muted); }
+
+/* Inversión: rangos en pesos mexicanos. */
+.pricing-grid { display: grid; gap: 20px; }
+.price-card { display: flex; flex-direction: column; gap: 10px; padding: 26px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+.price-card h3 { font-size: 17px; }
+.price-range { font-size: 26px; font-weight: 700; letter-spacing: -.03em; color: var(--accent); overflow-wrap: anywhere; }
+.price-note { font-size: 13px; color: var(--muted); }
+.pricing-note { margin-top: 26px; max-width: 640px; font-size: 12px; color: var(--muted); }
+
+/* Preguntas frecuentes: acordeón nativo, accesible por teclado. */
+.faq-list { display: grid; gap: 12px; }
+.faq-item { border: 1px solid var(--border); border-radius: 10px; background: var(--surface); }
+.faq-item summary { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 60px; padding: 16px 20px; font-size: 15px; font-weight: 600; cursor: pointer; list-style: none; }
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary svg { color: var(--accent); transition: transform .18s ease; }
+.faq-item[open] summary svg { transform: rotate(45deg); }
+.faq-answer { padding: 0 20px 20px; }
+.faq-answer p { font-size: 14px; color: var(--muted); }
+
+/* Acceso directo a WhatsApp en pantallas pequeñas. */
+.sticky-whatsapp { position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px 18px; border-radius: 10px; background: #0f766e; color: #fff; font-size: 15px; font-weight: 650; box-shadow: 0 12px 30px #00000030; }
+.sticky-whatsapp:hover { background: #0b5f59; }
+@media (max-width: 999px) { body { padding-bottom: 84px; } }
+
+/* Pie de página ampliado. */
+.footer { display: grid; gap: 26px; padding-block: 40px 25px; }
+.footer .brand { font-size: 22px; }
+.footer-top p { margin-top: 10px; font-size: 12px; color: var(--muted); }
+.footer-nav { display: flex; flex-wrap: wrap; gap: 16px 22px; }
+.footer-nav a { font-size: 13px; color: var(--muted); padding-block: 8px; }
+.footer-nav a:hover { color: var(--accent); }
+.footer-contact { display: flex; flex-wrap: wrap; gap: 10px 22px; align-items: center; font-size: 12px; color: var(--muted); }
+.footer-contact a { color: var(--accent); padding-block: 8px; }
+.footer-contact a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.footer-legal { font-size: 11px; color: var(--muted); }
+.footer-legal a { padding-block: 10px; }
+
+/* Aparición al desplazarse. Solo se oculta si el script ya está en marcha. */
+.js-motion [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity .5s ease, transform .5s ease; }
+.js-motion [data-reveal].revealed { opacity: 1; transform: none; }
+
 @keyframes step-in { from { opacity: .5; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 @media (min-width: 600px) {
   .container { width: min(1240px, calc(100% - 64px)); }
@@ -229,6 +313,8 @@ h2 { font-size: clamp(29px, 3.3vw, 44px); line-height: 1.15; }
   .summary-list:not(.compact) > div { display: grid; grid-template-columns: 160px 1fr; gap: 24px; }
   .summary-list:not(.compact) dt { margin: 0; padding-top: 4px; }
   .contact-links > a strong { font-size: 20px; }
+  .advantages-grid { grid-template-columns: repeat(3, 1fr); }
+  .pricing-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (min-width: 1000px) {
   .header-inner { gap: 24px; }
@@ -252,6 +338,10 @@ h2 { font-size: clamp(29px, 3.3vw, 44px); line-height: 1.15; }
   .progress { padding-inline: 35px; }
   .contact-inner { grid-template-columns: 1.2fr 1fr; gap: 100px; align-items: center; }
   .contact-section { padding-block: 85px; }
+  .works-grid { grid-template-columns: repeat(2, 1fr); }
+  .process-list { grid-template-columns: repeat(3, 1fr); }
+  .footer { grid-template-columns: repeat(2, 1fr); align-items: start; }
+  .sticky-whatsapp { display: none; }
 }
 @media (min-width: 1250px) {
   .header-cta { font-size: 13px; padding-inline: 20px; }
@@ -261,6 +351,9 @@ h2 { font-size: clamp(29px, 3.3vw, 44px); line-height: 1.15; }
   .hero-map { padding: 32px; }
   .map-brand-text { font-size: 48px; }
   .planner-layout { grid-template-columns: minmax(0, 1fr) 360px; gap: 35px; }
+  .pricing-grid { grid-template-columns: repeat(4, 1fr); }
+  .price-range { font-size: 21px; }
+  .footer { grid-template-columns: 1.2fr 1fr 1.4fr; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }

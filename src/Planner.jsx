@@ -119,7 +119,7 @@ export default function Planner({ request }) {
               </label>)}
               {errors.service && <p id="service-error" className="error-message">{errors.service}</p>}
             </fieldset> : <div className="questions">{visibleQuestions(step === 1 ? service.questions : preferenceQuestions, step === 1 ? answers : preferences).map(q => <Question key={q.id} question={q} value={(step === 1 ? answers : preferences)[q.id]} error={errors[q.id]} onChange={value => step === 1 ? changeAnswer(q, value) : setPreferences(previous => ({ ...previous, [q.id]: value }))} />)}</div>}
-            <div className="form-actions">{step > 0 ? <button className="button quiet" type="button" onClick={() => move(step - 1)}>← Atrás</button> : <span className="form-note">Sin precios ni plazos automáticos.</span>}<button className="button primary" type="submit">{step === 2 ? 'Ver mi resumen' : 'Continuar'}<Icon name="arrow" size={18} /></button></div>
+            <div className="form-actions">{step > 0 ? <button className="button quiet" type="button" onClick={() => move(step - 1)}>← Atrás</button> : <span className="form-note">Tu resumen se arma en tu navegador y solo llega a nosotros por WhatsApp.</span>}<button className="button primary" type="submit">{step === 2 ? 'Ver mi resumen' : 'Continuar'}<Icon name="arrow" size={18} /></button></div>
           </form> : <div className="final-summary">
             <Summary rows={rows} />
             <div className="summary-note"><Icon name="check" size={19} /><p>Revisaremos contigo el alcance, los tiempos y la cotización.</p></div>

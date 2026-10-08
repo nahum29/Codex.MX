@@ -13,6 +13,8 @@ export default function Icon({ name, size = 22, ...props }) {
     social: <><path d="M21 11a8 8 0 01-8 8H7l-4 3V11a8 8 0 018-8h2a8 8 0 018 8z" /><path d="M7 11h.01M12 11h.01M17 11h.01" /></>,
     copy: <><rect x="8" y="8" width="12" height="13" rx="2" /><path d="M16 8V3H3v13h5" /></>,
     mail: <><rect x="3" y="5" width="18" height="14" rx="2" /><path d="M3 6l9 7 9-7" /></>,
+    plus: <path d="M12 5v14M5 12h14" />,
+    whatsapp: <><path d="M21 11.5a8.5 8.5 0 01-12.7 7.4L3 20.5l1.7-5.1A8.5 8.5 0 1121 11.5z" /><path d="M9.4 9.2c.2-.4.4-.4.6-.4h.5c.2 0 .4 0 .5.4l.6 1.4c.1.2 0 .4-.1.5l-.4.5c-.1.2-.2.3-.1.5.3.6 1.4 1.7 2.4 2 .2.1.4 0 .5-.1l.4-.5c.1-.2.3-.2.5-.1l1.3.6c.2.1.3.2.3.4v.6c0 .3-.2.6-.6.8-.4.2-1 .3-2.4-.4a8 8 0 01-3.4-3c-.5-.9-.5-1.6-.5-1.9z" /></>,
   };
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" {...props}>{paths[name] || paths.arrow}</svg>;
 }
